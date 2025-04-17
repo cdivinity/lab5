@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="tip-calculator">
+        <div>
+            <label for="bill-total">Bill Total:</label>
+            <input type="text" id="bill-total" name="bill-total" required>
+        </div>
+        <div>
+            <label for="tip-percentage">Tip Percentage:</label>
+            <input type="range" id="tip-percentage" name="tip-percentage" min="0" max="100" value="0">
+        </div>
+        <div>
+            <label for="tip-amount">Tip Amount:</label>
+            <input type="text" id="tip-amount" name="tip-amount" disabled>
+        </div>
+        <div>
+            <label for="total-bill-with-tax">Total Bill with Tax:</label>
+            <input type="text" id="total-bill-with-tax" name="total-bill-with-tax" disabled>
+        </div>
+        <div>
+            <label for="total-bill-with-tip">Total Bill with Tip:</label>
+            <input type="text" id="total-bill-with-tip" name="total-bill-with-tip" disabled>
+        </div>
+    </form>
+    <script>
+        
+        const form = document.getElementById('tip-calculator');
+        form.addEventListener('input', (event) => {
+            const billTotal = parseFloat(document.getElementById('bill-total').value);
+            const tipPercentage = parseFloat(document.getElementById('tip-percentage').value);
+            const tipAmount = (billTotal * tipPercentage) / 100;
+            document.getElementById('tip-amount').value = tipAmount.toFixed(2);
+            const totalBillWithTip = billTotal + tipAmount;
+            document.getElementById('total-bill-with-tip').value = totalBillWithTip.toFixed(2);
+            const totalbillwithtax = billTotal + (billTotal*0.11);
+            document.getElementById('total-bill-with-tax').value =  totalbillwithtax.toFixed(2);
+        });
+    </script>
+</body>
+</html>
